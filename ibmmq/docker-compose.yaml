@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  # IBM-MQ
+  ibmmq:
+    image: ibmcom/mq:latest
+    container_name: ibmmq
+    restart: unless-stopped
+    ports:
+      - "1414:1414"
+      - "9443:9443"
+    environment:
+      LICENSE: accept
+      MQ_QMGR_NAME: QM1
+    volumes:
+      - "./.volumes/ibmmq:/var/mnt/mqm"
+    stdin_open: true
